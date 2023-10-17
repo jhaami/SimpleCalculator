@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Basic Calculator</title>
+    <!-- <link rel="stylesheet" type="text/css" href="styles.css"> -->
+</head>
+<style>
+    body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.calculator {
+    border: 1px solid #333;
+    border-radius: 5px;
+    width: 250px;
+    padding: 74px;
+    box-shadow: 2px 2px 5px #333;
+    background-color: #232020c0;
+}
+
+input {
+    width: 62%;
+    padding: 15px;
+    font-size: 18px;
+    display: inline;
+    background-color: #fff;
+    border: none;
+}
+input[type='button']{
+    width: 25%;
+    padding: 12px;
+    padding-top: 16px;
+    padding-bottom: 15px;
+    font-size: 18px;
+    background:green;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    margin-left: -3px;
+    
+}
+
+
+.buttons {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+}
+.buttons .sym{
+    background-color: #333;
+}
+
+button {
+    padding: 22px;
+    font-size: 18px;
+    background: #000;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}
+ input .ac{
+    display: inline;
+}
+
+</style>
+<body>
+    <div class="calculator">
+        <input type="text" id="display" class="ac" disabled>
+        <input type="button" value="AC" class="ac" onclick="clearDisplay()">
+        <div class="buttons">
+            <button onclick="appendInput('7')">7</button>
+            <button onclick="appendInput('8')">8</button>
+            <button onclick="appendInput('9')">9</button>
+            <button onclick="appendInput('+')" class="sym">+</button>
+
+            <button onclick="appendInput('4')">4</button>
+            <button onclick="appendInput('5')">5</button>
+            <button onclick="appendInput('6')">6</button>
+           
+            <button onclick="appendInput('-')" class="sym">-</button>
+            <button onclick="appendInput('1')">1</button>
+            <button onclick="appendInput('2')">2</button>
+            <button onclick="appendInput('3')">3</button>
+            
+            <button onclick="appendInput('/')" class="sym">/</button>
+            <button onclick="appendInput('.')">.</button>
+            <button onclick="appendInput('0')">0</button>
+            <button onclick="calculate()">=</button>
+            <button onclick="appendInput('*')" class="sym">*</button>
+            
+        </div>
+    </div>
+
+    <script>
+        let currentInput = '';
+
+function appendInput(value) {
+    currentInput += value;
+    document.getElementById('display').value = currentInput;
+}
+
+function clearDisplay() {
+    currentInput = '';
+    document.getElementById('display').value = currentInput;
+}
+
+function calculate() {
+    try {
+        const result = eval(currentInput);
+        document.getElementById('display').value = result;
+        currentInput = result.toString();
+    } catch (error) {
+        document.getElementById('display').value = 'Error';
+    }
+}
+
+    </script>
+</body>
+</html>
